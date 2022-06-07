@@ -2,7 +2,7 @@
 
 Small utility Chrome Extension with which you can easily write accent characters.
 
-Works with `textarea` and `input` fields.
+Works with `textarea`s, `input` fields and `div`s (with `textContent`).
 
 > ```
 > Ga'bor vagyok e's u~dvo~zlo~k mindenkit!
