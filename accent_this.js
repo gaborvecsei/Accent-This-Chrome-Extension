@@ -1,15 +1,15 @@
 function changeTheText() {
     // Define the character mappings
     const CHARS = {
-        "'a": "á",
-        "'e": "é",
-        "'i": "í",
-        "'o": "ó",
-        "~o": "ö",
-        '"o': "ő",
-        "'u": "ú",
-        "~u": "ü",
-        '"u': "ű",
+        "a'": "á",
+        "e'": "é",
+        "i'": "í",
+        "o'": "ó",
+        "o~": "ö",
+        'o"': "ő",
+        "u'": "ú",
+        "u~": "ü",
+        'u"': "ű",
     };
 
     // Add upercase chars as well
