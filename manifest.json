@@ -1,0 +1,14 @@
+{
+    "name": "Accent this!",
+    "action": {},
+    "description": "Helps to write accent characters in the text.",
+    "version": "0.1",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "background": {
+        "service_worker": "accent_this.js"
+    }
+}
