@@ -6,10 +6,10 @@ function changeTheText() {
         "'i": "í",
         "'o": "ó",
         "~o": "ö",
-        "\"o": "ő",
+        '"o': "ő",
         "'u": "ú",
         "~u": "ü",
-        "\"u": "ű"
+        '"u': "ű",
     };
 
     // Add upercase chars as well
@@ -19,7 +19,6 @@ function changeTheText() {
 
     // Function which changes the text
     function transform_text_to_accent_chars(text) {
-
         // Iterate over text and replace chars based on the mapping
         // TODO: performance measurement - should we use pointers instead of RegExp?
         for (var key in CHARS) {
@@ -29,19 +28,30 @@ function changeTheText() {
         return text;
     }
 
+    var textElement = document.activeElement;
+
     // if active element is an input or a text area then execute the transformation
-    if (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA") {
-        document.activeElement.value = transform_text_to_accent_chars(document.activeElement.value);
+    if (textElement.tagName === "INPUT" || textElement.tagName === "TEXTAREA") {
+        textElement.value = transform_text_to_accent_chars(textElement.value);
+    }
+    // if active element is a div and has value (e.g.: Youtube comments, Gmail body)
+    else if (textElement.tagName == "DIV" && textElement.textContent != null) {
+        textElement.textContent = transform_text_to_accent_chars(
+            textElement.textContent
+        );
     } else {
-        console.error("[ACCENT THIS extension] Extension only works on input and textarea elements - they need to be in focus");
+        console.error(
+            "[ACCENT THIS extension] Extension only works on input and textarea elements - they need to be in focus. Instead we found this:",
+            textElement
+        );
     }
 }
 
 chrome.action.onClicked.addListener((tab) => {
     if (!tab.url.includes("chrome://")) {
         chrome.scripting.executeScript({
-            target: {tabId: tab.id},
-            function: changeTheText
+            target: { tabId: tab.id },
+            function: changeTheText,
         });
     }
 });
